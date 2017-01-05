@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import spring.jdbc.User;
+import spring.jdbc.UserService;
 
 public class SpringJDBCTest {
     public static void main(String[] args) {

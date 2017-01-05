@@ -20,7 +20,7 @@
         <!--最小空闲值.当空闲的连接数少于阀值时，连接池就会预申请去一些连接，以免洪峰来时来不及申请 -->
         <property name="minIdle" value="1"/>
     </bean>
-    <bean id="userService" class="spring.UserServiceImpl">
+    <bean id="userService" class="spring.jdbc.UserServiceImpl">
         <!--向属性dataSource注入数据源 -->
         <property name="dataSource" ref="dataSource"></property>
     </bean>
