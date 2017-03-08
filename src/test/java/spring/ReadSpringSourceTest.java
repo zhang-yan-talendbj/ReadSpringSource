@@ -28,6 +28,14 @@ public class ReadSpringSourceTest {
     }
 
     @Test
+    public void application() throws Exception {
+        ApplicationContext bf = new ClassPathXmlApplicationContext("application.xml");
+        TestBean bean = (TestBean) bf.getBean("test");
+        bean.test();
+    }
+
+
+    @Test
     public void customTag() throws Exception {
         ApplicationContext bf = new ClassPathXmlApplicationContext("custom.xml");
         User user = (User) bf.getBean("testbean");
