@@ -12,6 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
 import spring.aop.TestBean;
+import spring.app.SimplePostProcessor;
 import spring.custom.User;
 import spring.ioc.MyTestBean;
 import spring.jdbc.UserService;
@@ -34,6 +35,13 @@ public class ReadSpringSourceTest {
         bean.test();
     }
 
+
+    @Test
+    public void postprocessor() throws Exception {
+        ApplicationContext bf = new ClassPathXmlApplicationContext("bean-factory-processor.xml");
+        SimplePostProcessor bean = (SimplePostProcessor) bf.getBean("simpleBean");
+        System.out.println(bean);
+    }
 
     @Test
     public void customTag() throws Exception {
