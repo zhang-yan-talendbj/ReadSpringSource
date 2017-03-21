@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="test" class="spring.aop.TestBean">
+        <property name="testStr" value="#{'aaaaa'+case.testStr}"/>
+        <property name="createTime" value="2017-9-9"/>
+    </bean>
+
+
+    <bean id="case" class="spring.aop.TestBean">
+        <property name="testStr" value="#{'aaaaa'}"/>
+    </bean>
+
+    <bean id="testListener" class="spring.app.TestListener"/>
+
+    <bean id="conversionService"
+          class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="spring.app.String2DateConverter"/>
+            </set>
+        </property>
+    </bean>
+
+    <!--<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">-->
+    <!--<property name="customEditors">-->
+    <!--<map>-->
+    <!--<entry key="java.util.Date">-->
+    <!--<bean class="spring.app.DatePropertyEditor">-->
+    <!--<property name="format" value="yyyy-MM-dd"/>-->
+    <!--</bean>-->
+    <!--</entry>-->
+    <!--</map>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+
+    <!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+    <!--<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>-->
+    <!--<property name="ignoreResourceNotFound" value="true"/>-->
+    <!--<property name="locations">-->
+    <!--<list>-->
+    <!--&lt;!&ndash;<value>classpath:/environment.properties</value>&ndash;&gt;-->
+    <!--&lt;!&ndash;suppress SpringPlaceholdersInspection &ndash;&gt;-->
+    <!--&lt;!&ndash;<value>file:${JIMUBOX_ENVIRONMENTS_FILE}</value>&ndash;&gt;-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="propertyEditorRegistrars">
+            <list>
+                <bean class="spring.app.DatePropertyEditorRegistrar"></bean>
+            </list>
+        </property>
+    </bean>
+
+
+</beans>

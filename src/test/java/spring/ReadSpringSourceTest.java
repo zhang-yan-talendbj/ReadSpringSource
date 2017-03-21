@@ -2,6 +2,8 @@ package spring;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Collection;
+import java.util.Currency;
 import java.util.List;
 
 import org.junit.Test;
@@ -9,10 +11,12 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.core.io.ClassPathResource;
 
 import spring.aop.TestBean;
 import spring.app.SimplePostProcessor;
+import spring.app.TestEvent;
 import spring.custom.User;
 import spring.ioc.MyTestBean;
 import spring.jdbc.UserService;
@@ -35,6 +39,44 @@ public class ReadSpringSourceTest {
         bean.test();
     }
 
+    @Test
+    public void applicationConverter() throws Exception {
+        ApplicationContext bf = new ClassPathXmlApplicationContext("application-converter.xml");
+        TestBean bean = (TestBean) bf.getBean("test");
+        bean.test();
+    }
+
+    public void testStringToPhoneNumberConvert() {
+//         DefaultConversionService conversionService = new DefaultConversionService();
+//         conversionService.addConverter(new StringToPhoneNumberConverter());
+//         String phoneNumberStr = "010-12345678";
+//         PhoneNumberModel phoneNumber = conversionService.convert(phoneNumberStr, PhoneNumber
+//                Model.class);
+//         Assert.assertEquals("010", phoneNumber.getAreaCode());
+    }
+
+    @Test
+    public void testConvert() throws Exception {
+        DefaultConversionService service = new DefaultConversionService();
+
+//        Currency currency = service.convert("RMB", Currency.class);
+//        System.out.println(currency);
+
+        Collection<String> list = service.convert("Deb, Mike, Kim", Collection.class);
+        System.out.println(list);
+
+    }
+
+    @Test
+    public void applicationEvent() throws Exception {
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application-event.xml");
+        // TestBean bean = (TestBean) applicationContext.getBean("test");
+        // bean.test();
+
+        TestEvent event = new TestEvent("hello", "message");
+        applicationContext.publishEvent(event);
+
+    }
 
     @Test
     public void postprocessor() throws Exception {
