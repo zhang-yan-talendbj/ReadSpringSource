@@ -1,11 +1,5 @@
 package spring;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.Collection;
-import java.util.Currency;
-import java.util.List;
-
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
@@ -13,13 +7,20 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.core.io.ClassPathResource;
-
+import spring.aop.ITest;
 import spring.aop.TestBean;
 import spring.app.SimplePostProcessor;
 import spring.app.TestEvent;
+import spring.bean.A;
+import spring.bean.ValuesBean;
 import spring.custom.User;
 import spring.ioc.MyTestBean;
 import spring.jdbc.UserService;
+
+import java.util.Collection;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by thinkdeeply on 1-5.
@@ -28,7 +29,7 @@ public class ReadSpringSourceTest {
     @Test
     public void aop() throws Exception {
         ApplicationContext bf = new ClassPathXmlApplicationContext("aspectTest.xml");
-        TestBean bean = (TestBean) bf.getBean("test");
+        ITest bean = (ITest) bf.getBean("test");
         bean.test();
     }
 
@@ -37,6 +38,13 @@ public class ReadSpringSourceTest {
         ApplicationContext bf = new ClassPathXmlApplicationContext("application.xml");
         TestBean bean = (TestBean) bf.getBean("test");
         bean.test();
+    }
+
+    @Test
+    public void applicationProperties() throws Exception {
+        ApplicationContext bf = new ClassPathXmlApplicationContext("application-properties.xml");
+        ValuesBean bean1 = bf.getBean(ValuesBean.class);
+        System.out.println(bean1);
     }
 
     @Test
@@ -97,6 +105,25 @@ public class ReadSpringSourceTest {
         BeanFactory bf = new XmlBeanFactory(new ClassPathResource("bean-ioc.xml"));
         MyTestBean bean = (MyTestBean) bf.getBean("myTestBean");
         assertEquals("testStr", bean.getTestStr());
+    }
+
+    @Test
+    public void beanDependency() throws Exception {
+        BeanFactory bf = new XmlBeanFactory(new ClassPathResource("bean-abc.xml"));
+        A bean = (A) bf.getBean("a");
+
+        System.out.println(bean);
+    }
+
+    @Test
+    public void factoryBean() throws Exception {
+        BeanFactory bf = new XmlBeanFactory(new ClassPathResource("conf-factory-bean.xml"));
+
+        System.out.println(bf.getBean("tool"));
+        System.out.println(bf.getBean("tool"));
+        System.out.println(bf.getBean("tool"));
+        System.out.println(bf.getBean("tool"));
+        System.out.println(bf.getBean("tool"));
     }
 
     @Test

@@ -2,7 +2,7 @@ package spring.aop;
 
 import java.util.Date;
 
-public class TestBean {
+public class TestBean implements ITest {
     private String testStr = "testStr";
 
     private Date createTime;
@@ -15,7 +15,7 @@ public class TestBean {
         this.createTime = createTime;
     }
 
-    public String getTestStr() {
+    public String getTestStr() throws RuntimeException {
         return testStr;
     }
 
@@ -23,7 +23,9 @@ public class TestBean {
         this.testStr = testStr;
     }
 
+    @Override
     public void test() {
+        String testStr = getTestStr();
         System.out.println("test");
     }
 }
