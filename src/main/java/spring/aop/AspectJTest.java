@@ -22,8 +22,7 @@ public class AspectJTest {
     public void afterTest() {
         System.out.println("afterTest");
     }
-
-    @Around("test()")
+    @Around("execution(public * test*(..))")
     public Object arountTest(ProceedingJoinPoint p) {
         System.out.println("before1");
         Object o = null;

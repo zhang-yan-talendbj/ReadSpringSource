@@ -5,4 +5,7 @@ package spring.aop;
 public interface ITest {
 
     void test();
+    void testB();
+
+    void setTestBean(ITest bean);
 }

@@ -30,6 +30,15 @@ public class ReadSpringSourceTest {
     public void aop() throws Exception {
         ApplicationContext bf = new ClassPathXmlApplicationContext("aspectTest.xml");
         ITest bean = (ITest) bf.getBean("test");
+
+//        bean.setTestBean(bean);
+        bean.test();
+    }
+
+    @Test
+    public void xmlAop() throws Exception {
+        ApplicationContext bf = new ClassPathXmlApplicationContext("read-aop.xml");
+        ITest bean = (ITest) bf.getBean("test");
         bean.test();
     }
 
