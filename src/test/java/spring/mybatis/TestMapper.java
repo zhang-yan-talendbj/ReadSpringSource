@@ -3,9 +3,6 @@ package spring.mybatis;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
-import spring.mybatis.MyBatisUtil;
-import spring.mybatis.User;
-import spring.mybatis.UserMapper;
 
 public class TestMapper {
     static SqlSessionFactory sqlSessionFactory = null;
@@ -32,7 +29,7 @@ public class TestMapper {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-            User user = userMapper.getUser(1);
+            User user = userMapper.getUser(5);
             System.out.println("name: " + user.getName() + "|age: " + user.getAge());
         } finally {
             sqlSession.close();

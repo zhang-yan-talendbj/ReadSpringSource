@@ -3,6 +3,7 @@ package spring.mybatis;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class UserServiceTest {
     @Test
@@ -17,7 +18,7 @@ public class UserServiceTest {
 
     @Test
     public void testScanMapper() throws Exception {
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring-mybatis-scan.xml");
+        ApplicationContext context = new GenericXmlApplicationContext("spring-mybatis-scan.xml");
         UserService userService = (UserService) context.getBean("userService");
         userService.save();
     }

@@ -36,7 +36,7 @@ public class TestBean implements ITest {
     @Override
     public void test() {
         String testStr = getTestStr();
-        System.out.println("test");
+        System.out.println(testStr);
 
         ITest proxy=(ITest) AopContext.currentProxy();
 

@@ -46,7 +46,7 @@ public class ReadSpringSourceTest {
     public void application() throws Exception {
         ApplicationContext bf = new ClassPathXmlApplicationContext("application.xml");
         TestBean bean = (TestBean) bf.getBean("test");
-        bean.test();
+        System.out.println(bean.getTestStr());
     }
 
     @Test
