@@ -2,6 +2,9 @@ package spring;
 
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.annotation.AnnotatedGenericBeanDefinition;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.SimpleBeanDefinitionRegistry;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -152,5 +155,13 @@ public class ReadSpringSourceTest {
                     person2.getId() + " " + person2.getName() + " " + person2.getAge() + " " + person2.getSex());
         }
 
+    }
+
+    @Test
+    public void testBeanDefinitionRegistry() {
+        BeanDefinitionRegistry beanDefinitionRegistry = new SimpleBeanDefinitionRegistry();
+        AnnotatedGenericBeanDefinition genericBeanDefinition = new AnnotatedGenericBeanDefinition(Test.class);
+        beanDefinitionRegistry.registerBeanDefinition("springBean",genericBeanDefinition);
+        System.out.println(beanDefinitionRegistry.isBeanNameInUse("springBean"));
     }
 }

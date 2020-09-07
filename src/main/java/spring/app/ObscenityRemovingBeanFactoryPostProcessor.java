@@ -17,6 +17,7 @@ public class ObscenityRemovingBeanFactoryPostProcessor implements BeanFactoryPos
         this.obscenties = new HashSet<String>();
     }
 
+    @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         String[] beanNames = beanFactory.getBeanDefinitionNames();
         for (String beanName : beanNames) {
@@ -24,9 +25,11 @@ public class ObscenityRemovingBeanFactoryPostProcessor implements BeanFactoryPos
             StringValueResolver valueResover = new
 
             StringValueResolver() {
+                @Override
                 public String resolveStringValue(String strVal) {
-                    if (isObscene(strVal))
+                    if (isObscene(strVal)) {
                         return "*****";
+                    }
                     return strVal;
                 }
             };

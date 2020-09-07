@@ -11,20 +11,16 @@
 
 
     <bean id="case" class="spring.aop.TestBean">
-        <property name="testStr" value="#{'aaaaa'}"/>
+        <property name="testStr" value="#{'bbbbb'}"/>
     </bean>
 
-    <!--<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">-->
-        <!--<property name="customEditors">-->
-            <!--<map>-->
-                <!--<entry key="java.util.Date">-->
-                    <!--<bean class="spring.app.DatePropertyEditor">-->
-                        <!--<property name="format" value="yyyy-MM-dd"/>-->
-                    <!--</bean>-->
-                <!--</entry>-->
-            <!--</map>-->
-        <!--</property>-->
-    <!--</bean>-->
+<!--    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">-->
+<!--        <property name="customEditors">-->
+<!--            <map>-->
+<!--                <entry key="java.util.Date"  value="spring.app.DatePropertyEditor"/>-->
+<!--            </map>-->
+<!--        </property>-->
+<!--    </bean>-->
 
 
     <!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
